@@ -7,7 +7,7 @@ wchar_t* tp_UTF8 = L"   UTF-8";
 wchar_t* tp_U16L = L"UTF-16LE";
 wchar_t* tp_U16B = L"UTF-16BE";
 
-void cnt_it(const wchar_t* fn, cnt_struct& cnt)
+void cnt_it(const wchar_t* fn, cnt_struct& cnt, int& succ_cnt)
 {
     try {
     cnt_struct single;
@@ -48,6 +48,7 @@ void cnt_it(const wchar_t* fn, cnt_struct& cnt)
     
     fwprintf_s(stdout, L"\rLine|%14lld\n", single.lines);
     cnt += single;
+    ++succ_cnt;
     } catch (...) {
         fwprintf_s(stdout, L"Line|-             |Size|-             |   ERROR|%s\n", fn);
         return;
